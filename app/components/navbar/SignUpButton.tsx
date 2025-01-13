@@ -11,7 +11,7 @@ const SignUpButton = () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email || "", password || "");
       alert(`Sign-up successful! Welcome, ${userCredential.user.email}`);
-    } catch (error: FirebaseError) {
+    } catch (error) {
       if (error instanceof FirebaseError) { 
         console.error("Sign-up failed:", error.message);
         alert("Sign-up failed: " + error.message);
