@@ -1,7 +1,10 @@
 'use client'
-
 import React from 'react'
 
-export default function TravelPage() {
-    return <div>UsersPage</div>;
-  }
+const Travel = () => {
+  return (
+    <div>Travel</div>
+  )
+}
+
+export default Travel
