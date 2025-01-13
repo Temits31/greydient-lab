@@ -19,10 +19,14 @@ const LoginButton = () => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       alert(`Welcome, ${userCredential.user.displayName || userCredential.user.email}!`);
       console.log(auth)
-    } catch (error: FirebaseError) {
-      console.error("Login failed:", error);
-      console.log(auth)
-      alert(error.message || "An error occurred while logging in.");
+    } catch (error) {
+      if (error instanceof FirebaseError) {  // Type-safe check for FirebaseError
+        console.error("Sign-up failed:", error.message);
+        alert("Sign-up failed: " + error.message);
+      } else {
+        console.error("An unknown error occurred:", error);
+        alert("An unknown error occurred.");
+      }
     }
   };
 
