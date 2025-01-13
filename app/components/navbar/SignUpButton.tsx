@@ -12,8 +12,13 @@ const SignUpButton = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email || "", password || "");
       alert(`Sign-up successful! Welcome, ${userCredential.user.email}`);
     } catch (error: FirebaseError) {
-      console.error("Sign-up failed:", error.message);
-      alert("Sign-up failed: " + error.message);
+      if (error instanceof FirebaseError) { 
+        console.error("Sign-up failed:", error.message);
+        alert("Sign-up failed: " + error.message);
+      } else {
+        console.error("An unknown error occurred:", error);
+        alert("An unknown error occurred.");
+      }
     }
   };
 
