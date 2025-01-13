@@ -1,6 +1,7 @@
 import React from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/config";
+import { FirebaseError } from "firebase/app";
 
 const SignUpButton = () => {
   const handleSignUp = async () => {
@@ -10,7 +11,7 @@ const SignUpButton = () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email || "", password || "");
       alert(`Sign-up successful! Welcome, ${userCredential.user.email}`);
-    } catch (error: any) {
+    } catch (error: FirebaseError) {
       console.error("Sign-up failed:", error.message);
       alert("Sign-up failed: " + error.message);
     }
