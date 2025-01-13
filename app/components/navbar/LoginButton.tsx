@@ -3,6 +3,7 @@
 import React from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/config";
+import { FirebaseError } from "firebase/app";
 
 const LoginButton = () => {
   const handleLogin = async () => {
@@ -18,7 +19,7 @@ const LoginButton = () => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       alert(`Welcome, ${userCredential.user.displayName || userCredential.user.email}!`);
       console.log(auth)
-    } catch (error: any) {
+    } catch (error: FirebaseError) {
       console.error("Login failed:", error);
       console.log(auth)
       alert(error.message || "An error occurred while logging in.");
